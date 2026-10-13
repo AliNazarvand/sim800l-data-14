@@ -1,35 +1,34 @@
-# SIM800L Data
+# sim800l-data
 
-Structured, source-documented, schema-validated dataset for the SIM800L module.
+Structured, source-backed datasets for the **SIM800L** module.
+
+## Live status
+
+See `reports/COVERAGE_MATRIX.md` and `reports/CROSS_REF_REPORT.md`.
 
 ## Layout
 
-- `data/`     - 18 datasets (dat_01 .. dat_18), YAML.
-- `schemas/`  - 18 JSON-Schema files (draft-07) with nullable optionals.
-- `reports/`  - coverage, validation, cross-ref, classification, consistency.
-- `scripts/`  - validate, normalize, cross_ref, coverage, consistency, classify, apply.
-- `sources/`  - original PDFs and extracted text.
+| Path | Purpose |
+|---|---|
+| `data/` | 18 YAML datasets (`dat_01` … `dat_18`) |
+| `schemas/` | JSON-Schema draft-07 per dataset |
+| `sources/originals/` | Immutable source PDFs |
+| `sources/extracted/` | Extracted text/tables/AT-command index |
+| `scripts/` | Python tooling |
+| `reports/` | Reports and logs |
 
-## Current Status (2026-10-13T19:07:51Z)
+## Scripts
 
-- Total records          : 1369
-- Validation errors      : 0
-- Basic AT added (Q1)    : 5
-- dat_06 command-nulled  : 6
+- `extract_at_commands.py` — scan AT Manual PDFs, emit `at_commands.json`.
+- `add_missing_at_commands.py` — merge new commands into `dat_01`.
+- `_rebuild_dat15.py` — content-filter `dat_15`.
+- `fix_validation_errors.py` — apply safe defaults.
+- `validate.py`, `cross_ref.py`, `coverage_report.py` — QA pass.
 
-## Cross-ref buckets
+## Rules
 
-- pending_blocked   : 35
-- format_mismatch   : 129
-- real_missing      : 0
-
-## Real-missing classes (should be 0 after fix)
-
-- basic_at_missing     : 0
-- manual_owned_pending : 0
-- not_a_command        : 0
-- unknown              : 0
-
-## Blocked Datasets
-
-- dat_08 (Firmware), dat_16 (EVB), dat_18 (Certification)
+1. Only SIM800L. `applicable_models` must include it.
+2. Every record must carry `source`, `source_type`, `confidence`, `status`.
+3. `V2.02` hardware supersedes `V1.00`.
+4. No synthetic data.
+5. Timestamps are UTC ISO 8601.

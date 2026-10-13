@@ -1,30 +1,24 @@
 # Gap Report
 
-Generated: 2026-10-13T19:10:14Z
+Generated: 2026-10-13T19:33:28Z
 
-## Missing Sources
+## Missing sources
 
-| Missing Document | Affected Datasets | Status |
+| Missing | Affected datasets | Impact |
 |---|---|---|
-| SIM800 Series TCP/IP AT Command Manual | dat_10 | pending_blocked |
-| SIM800 Series HTTP AT Command Manual | dat_11 | pending_blocked |
-| SIM800 Series FTP AT Command Manual | dat_11 | pending_blocked |
-| SIM800 Series SSL AT Command Manual | dat_11, dat_17 | pending_blocked |
-| SIM800 Series Audio AT Command Manual | dat_12 | pending_blocked |
-| SIM800 Series SIM AT Command Manual | dat_13 | pending_blocked |
-| SIM800L Datasheet | supplementary | missing |
-| SIM800 Series Sleep Mode Application Note | dat_15 | missing |
-| SIM800 Series URC Application Note | dat_02 | missing |
+| SIM800 Series TCP/IP AT Command Manual | dat_10 | pending cross-refs |
+| SIM800 Series HTTP AT Command Manual | dat_11 | pending cross-refs |
+| SIM800 Series FTP AT Command Manual | dat_11 | pending cross-refs |
+| SIM800 Series SSL AT Command Manual | dat_11, dat_17 | pending cross-refs |
+| SIM800 Series Audio AT Command Manual | dat_12 | pending cross-refs |
+| SIM800 Series SIM AT Command Manual | dat_13 | pending cross-refs |
 | SIM800 Series Firmware Release Notes | dat_08 | blocked |
-| SIM800 Series Certification Documents (CE/FCC/GCF/PTCRB/RoHS/IC/TA/RCM/Anatel/NCC) | dat_18 | blocked |
+| SIM800 Series Certification Documents | dat_18 | blocked |
 | Official EVB documentation | dat_16 | blocked |
 
-## Impact
+## Resolution plan
 
-- pending_blocked cross-refs: 35
-- format_mismatch cross-refs: 129 (safe; normalized form matches existing entries)
-- real_missing cross-refs: 0
-
-## Resolution Plan
-
-Each missing manual, once provided in `sources/originals/`, will be re-extracted and the corresponding dataset re-audited.
+1. Place the missing PDF in `sources/originals/`.
+2. Run `python scripts/extract_pdf.py` (or `ocr_pdf.py` for scans).
+3. Re-audit the affected dataset.
+4. Re-run `python scripts/validate.py` and `cross_ref.py`.

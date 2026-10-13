@@ -1,39 +1,64 @@
 $schema: "http://json-schema.org/draft-07/schema#"
-title: "dat_08"
+title: "dat_08_firmware_compatibility"
 type: object
 required: [id, category, source, source_type, confidence, status, applicable_models]
 properties:
-  id: {type: string}
-  category: {type: string}
+  id:
+    type: string
+    pattern: "^dat_08_[0-9]{4}$"
+  category:
+    type: string
   source:
     type: object
     required: [name, version, date]
     properties:
-      name: {type: string}
-      version: {type: string}
-      date: {type: string}
-      page: {type: [string, "null"]}
-      section: {type: [string, "null"]}
-      quote: {type: [string, "null"]}
-      notes: {type: [string, "null"]}
-  source_type: {type: string, enum: [primary, secondary, external]}
-  confidence: {type: number, minimum: 0.0, maximum: 1.0}
-  status: {type: string, enum: [complete, partial, unknown, inferred, blocked, deferred]}
-  conflicts: {type: [array, "null"]}
-  notes: {type: [string, "null"]}
-  tags: {type: [array, "null"]}
+      name: { type: string }
+      version: { type: string }
+      date: { type: string }
+      page: { type: [string, "null"] }
+      section: { type: [string, "null"] }
+      quote: { type: [string, "null"] }
+  source_type:
+    type: string
+    enum: [primary, secondary, external]
+  confidence:
+    type: number
+    minimum: 0.0
+    maximum: 1.0
+  status:
+    type: string
+    enum: [complete, partial, unknown, inferred, blocked, deferred]
+  conflicts:
+    type: array
+    items: { type: object }
+  notes:
+    type: [string, "null"]
+  tags:
+    type: array
+    items: { type: string }
   applicable_models:
     type: array
-    items: {type: string}
-    contains: {const: "SIM800L"}
-  created_at: {type: [string, "null"]}
-  updated_at: {type: [string, "null"]}
-  firmware_version: {type: [string, "null"]}
-  release_date: {type: [string, "null"]}
-  base_version: {type: [string, "null"]}
-  supported_commands: {type: [array, "null"], items: {type: string}}
-  unsupported_commands: {type: [array, "null"], items: {type: string}}
-  features: {type: [array, "null"], items: {type: string}}
-  known_issues: {type: [array, "null"], items: {type: string}}
-  fixed_issues: {type: [array, "null"], items: {type: string}}
-  related_commands: {type: [array, "null"], items: {type: string}}
+    items: { type: string }
+  created_at: { type: string }
+  updated_at: { type: string }
+  firmware_version: { type: string }
+  release_date: { type: [string, "null"] }
+  base_version: { type: [string, "null"] }
+  supported_commands:
+    type: array
+    items: { type: string }
+  unsupported_commands:
+    type: array
+    items: { type: string }
+  features:
+    type: array
+    items: { type: string }
+  known_issues:
+    type: array
+    items: { type: string }
+  fixed_issues:
+    type: array
+    items: { type: string }
+  related_commands:
+    type: array
+    items: { type: string }

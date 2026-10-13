@@ -1,29 +1,51 @@
 #!/usr/bin/env python3
-"""OCR helper using tesseract if available."""
-import os
+"""OCR fallback for scanned PDFs (uses pytesseract)."""
 import sys
-import subprocess
-import glob
+from pathlib import Path
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = os.path.join(ROOT, "sources", "originals")
-OUT = os.path.join(ROOT, "sources", "extracted", "ocr")
+try:
+    import pytesseract
+    from pdf2image import convert_from_path
+    HAS_OCR = True
+except ImportError:
+    HAS_OCR = False
+
+SOURCES_DIR = Path("sources/originals")
+OUTPUT_DIR = Path("sources/extracted")
+
+
+def ocr_pdf(pdf_path, output_dir, lang="eng", dpi=300):
+    if not HAS_OCR:
+        print("pytesseract/pdf2image missing. Run: pip install -r requirements.txt")
+        return False
+    output_dir.mkdir(parents=True, exist_ok=True)
+    out_file = output_dir / (pdf_path.stem + ".ocr.txt")
+    images = convert_from_path(str(pdf_path), dpi=dpi)
+    parts = []
+    for i, img in enumerate(images):
+        txt = pytesseract.image_to_string(img, lang=lang)
+        parts.append(f"--- OCR Page {i + 1} ---\n{txt}")
+    out_file.write_text("\n".join(parts), encoding="utf-8")
+    print(f"OCR -> {out_file}")
+    return True
+
 
 def main():
-    os.makedirs(OUT, exist_ok=True)
-    from shutil import which
-    if which("tesseract") is None:
-        print("tesseract not installed.")
-        return
-    pdfs = glob.glob(os.path.join(SRC, "*.pdf")) + glob.glob(os.path.join(SRC, "*.PDF"))
-    for pdf in pdfs:
-        base = os.path.splitext(os.path.basename(pdf))[0]
-        txt = os.path.join(OUT, base + ".ocr.txt")
-        try:
-            subprocess.run(["tesseract", pdf, txt[:-4], "-l", "eng"], check=True)
-            print("OCR done:", txt)
-        except Exception as e:
-            print("OCR failed:", pdf, e)
+    if not HAS_OCR:
+        print("OCR stack unavailable.")
+        return 2
+    SOURCES_DIR.mkdir(parents=True, exist_ok=True)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    pdfs = list(SOURCES_DIR.glob("*.pdf")) + list(SOURCES_DIR.glob("*.PDF"))
+    if not pdfs:
+        print("No PDFs to OCR.")
+        return 1
+    for p in pdfs:
+        print(f"OCR: {p.name}")
+        ocr_pdf(p, OUTPUT_DIR)
+    print("OCR complete.")
+    return 0
+
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

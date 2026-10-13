@@ -1,37 +1,50 @@
 $schema: "http://json-schema.org/draft-07/schema#"
-title: "dat_18"
+title: "dat_18_certification"
 type: object
 required: [id, category, source, source_type, confidence, status, applicable_models]
 properties:
-  id: {type: string}
-  category: {type: string}
+  id:
+    type: string
+    pattern: "^dat_18_[0-9]{4}$"
+  category:
+    type: string
   source:
     type: object
     required: [name, version, date]
     properties:
-      name: {type: string}
-      version: {type: string}
-      date: {type: string}
-      page: {type: [string, "null"]}
-      section: {type: [string, "null"]}
-      quote: {type: [string, "null"]}
-      notes: {type: [string, "null"]}
-  source_type: {type: string, enum: [primary, secondary, external]}
-  confidence: {type: number, minimum: 0.0, maximum: 1.0}
-  status: {type: string, enum: [complete, partial, unknown, inferred, blocked, deferred]}
-  conflicts: {type: [array, "null"]}
-  notes: {type: [string, "null"]}
-  tags: {type: [array, "null"]}
+      name: { type: string }
+      version: { type: string }
+      date: { type: string }
+      page: { type: [string, "null"] }
+      section: { type: [string, "null"] }
+      quote: { type: [string, "null"] }
+  source_type:
+    type: string
+    enum: [primary, secondary, external]
+  confidence:
+    type: number
+    minimum: 0.0
+    maximum: 1.0
+  status:
+    type: string
+    enum: [complete, partial, unknown, inferred, blocked, deferred]
+  conflicts:
+    type: array
+    items: { type: object }
+  notes:
+    type: [string, "null"]
+  tags:
+    type: array
+    items: { type: string }
   applicable_models:
     type: array
-    items: {type: string}
-    contains: {const: "SIM800L"}
-  created_at: {type: [string, "null"]}
-  updated_at: {type: [string, "null"]}
-  certification_body: {type: [string, "null"]}
-  certificate_number: {type: [string, "null"]}
-  standard: {type: [string, "null"]}
-  country: {type: [string, "null"]}
-  date_issued: {type: [string, "null"]}
-  date_expiry: {type: [string, "null"]}
-  document_link: {type: [string, "null"]}
+    items: { type: string }
+  created_at: { type: string }
+  updated_at: { type: string }
+  certification_body: { type: string }
+  certificate_number: { type: [string, "null"] }
+  standard: { type: [string, "null"] }
+  country: { type: [string, "null"] }
+  date_issued: { type: [string, "null"] }
+  date_expiry: { type: [string, "null"] }
+  document_link: { type: [string, "null"] }

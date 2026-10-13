@@ -1,44 +1,57 @@
 $schema: "http://json-schema.org/draft-07/schema#"
-title: "dat_07"
+title: "dat_07_hardware_reference"
 type: object
 required: [id, category, source, source_type, confidence, status, applicable_models]
 properties:
-  id: {type: string}
-  category: {type: string}
+  id:
+    type: string
+    pattern: "^dat_07_[0-9]{4}$"
+  category:
+    type: string
   source:
     type: object
     required: [name, version, date]
     properties:
-      name: {type: string}
-      version: {type: string}
-      date: {type: string}
-      page: {type: [string, "null"]}
-      section: {type: [string, "null"]}
-      quote: {type: [string, "null"]}
-      notes: {type: [string, "null"]}
-  source_type: {type: string, enum: [primary, secondary, external]}
-  confidence: {type: number, minimum: 0.0, maximum: 1.0}
-  status: {type: string, enum: [complete, partial, unknown, inferred, blocked, deferred]}
-  conflicts: {type: [array, "null"]}
-  notes: {type: [string, "null"]}
-  tags: {type: [array, "null"]}
+      name: { type: string }
+      version: { type: string }
+      date: { type: string }
+      page: { type: [string, "null"] }
+      section: { type: [string, "null"] }
+      quote: { type: [string, "null"] }
+  source_type:
+    type: string
+    enum: [primary, secondary, external]
+  confidence:
+    type: number
+    minimum: 0.0
+    maximum: 1.0
+  status:
+    type: string
+    enum: [complete, partial, unknown, inferred, blocked, deferred]
+  conflicts:
+    type: array
+    items: { type: object }
+  notes:
+    type: [string, "null"]
+  tags:
+    type: array
+    items: { type: string }
   applicable_models:
     type: array
-    items: {type: string}
-    contains: {const: "SIM800L"}
-  created_at: {type: [string, "null"]}
-  updated_at: {type: [string, "null"]}
-  name: {type: [string, "null"]}
-  pin_number: {type: [string, "null"]}
-  direction: {type: [string, "null"]}
-  voltage_min: {type: [number, "null"]}
-  voltage_typ: {type: [number, "null"]}
-  voltage_max: {type: [number, "null"]}
-  current_typ: {type: [number, "null"]}
-  current_max: {type: [number, "null"]}
-  function: {type: [string, "null"]}
-  alternate_function: {type: [string, "null"]}
-  pull_up_down: {type: [string, "null"]}
-  esd_rating: {type: [string, "null"]}
-  impedance: {type: [string, "null"]}
-  decoupling: {type: [string, "null"]}
+    items: { type: string }
+  created_at: { type: string }
+  updated_at: { type: string }
+  name: { type: string }
+  pin_number: { type: [string, "null"] }
+  direction: { type: [string, "null"] }
+  voltage_min: { type: [number, "null"] }
+  voltage_typ: { type: [number, "null"] }
+  voltage_max: { type: [number, "null"] }
+  current_typ: { type: [number, "null"] }
+  current_max: { type: [number, "null"] }
+  function: { type: string }
+  alternate_function: { type: [string, "null"] }
+  pull_up_down: { type: [string, "null"] }
+  esd_rating: { type: [string, "null"] }
+  impedance: { type: [string, "null"] }
+  decoupling: { type: [string, "null"] }

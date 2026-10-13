@@ -1,39 +1,54 @@
 $schema: "http://json-schema.org/draft-07/schema#"
-title: "dat_14"
+title: "dat_14_operator_apn"
 type: object
 required: [id, category, source, source_type, confidence, status, applicable_models]
 properties:
-  id: {type: string}
-  category: {type: string}
+  id:
+    type: string
+    pattern: "^dat_14_[0-9]{4}$"
+  category:
+    type: string
   source:
     type: object
     required: [name, version, date]
     properties:
-      name: {type: string}
-      version: {type: string}
-      date: {type: string}
-      page: {type: [string, "null"]}
-      section: {type: [string, "null"]}
-      quote: {type: [string, "null"]}
-      notes: {type: [string, "null"]}
-  source_type: {type: string, enum: [primary, secondary, external]}
-  confidence: {type: number, minimum: 0.0, maximum: 1.0}
-  status: {type: string, enum: [complete, partial, unknown, inferred, blocked, deferred]}
-  conflicts: {type: [array, "null"]}
-  notes: {type: [string, "null"]}
-  tags: {type: [array, "null"]}
+      name: { type: string }
+      version: { type: string }
+      date: { type: string }
+      page: { type: [string, "null"] }
+      section: { type: [string, "null"] }
+      quote: { type: [string, "null"] }
+  source_type:
+    type: string
+    enum: [primary, secondary, external]
+  confidence:
+    type: number
+    minimum: 0.0
+    maximum: 1.0
+  status:
+    type: string
+    enum: [complete, partial, unknown, inferred, blocked, deferred]
+  conflicts:
+    type: array
+    items: { type: object }
+  notes:
+    type: [string, "null"]
+  tags:
+    type: array
+    items: { type: string }
   applicable_models:
     type: array
-    items: {type: string}
-    contains: {const: "SIM800L"}
-  created_at: {type: [string, "null"]}
-  updated_at: {type: [string, "null"]}
-  mcc: {type: [string, "null"]}
-  mnc: {type: [string, "null"]}
-  country: {type: [string, "null"]}
-  country_code: {type: [string, "null"]}
-  operator: {type: [string, "null"]}
-  brand: {type: [string, "null"]}
-  network_type: {type: [string, "null"]}
-  apn_list: {type: [array, "null"], items: {type: string}}
-  source_url: {type: [string, "null"]}
+    items: { type: string }
+  created_at: { type: string }
+  updated_at: { type: string }
+  mcc: { type: string }
+  mnc: { type: string }
+  country: { type: string }
+  country_code: { type: string }
+  operator: { type: string }
+  brand: { type: [string, "null"] }
+  network_type: { type: string }
+  apn_list:
+    type: array
+    items: { type: string }
+  source_url: { type: string }

@@ -1,60 +1,97 @@
 # Validation Report
 
-- Datasets: 18
-- Total records: 1369
-- Total errors: 0
-- jsonschema available: True
+Generated: 2026-10-13T19:48:09Z
+Dependencies available: True
+## dat_01_at_command: OK (394 records)
+## dat_02_urc: OK (18 records)
+## dat_03_error_code: OK (255 records)
+## dat_04_timing_timeout: 1 errors (99 records)
+  - [L1] Record 11: None is not of type 'string'
+## dat_05_state_machine: OK (31 records)
+## dat_06_init_sequence: 30 errors (35 records)
+  - [L1] Record 0: None is not of type 'integer'
+  - [L1] Record 1: None is not of type 'integer'
+  - [L1] Record 2: None is not of type 'integer'
+  - [L1] Record 3: None is not of type 'integer'
+  - [L1] Record 4: None is not of type 'integer'
+  - [L1] Record 5: None is not of type 'integer'
+  - [L1] Record 6: None is not of type 'integer'
+  - [L1] Record 7: None is not of type 'integer'
+  - [L1] Record 8: None is not of type 'integer'
+  - [L1] Record 9: None is not of type 'integer'
+  - [L1] Record 10: None is not of type 'integer'
+  - [L1] Record 11: None is not of type 'integer'
+  - [L1] Record 12: None is not of type 'integer'
+  - [L1] Record 13: None is not of type 'integer'
+  - [L1] Record 14: None is not of type 'integer'
+  - [L1] Record 16: 'dat_06_0001' is not of type 'integer', 'null'
+  - [L1] Record 17: 'dat_06_0002' is not of type 'integer', 'null'
+  - [L1] Record 18: 'dat_06_0003' is not of type 'integer', 'null'
+  - [L1] Record 19: 'dat_06_0004' is not of type 'integer', 'null'
+  - [L1] Record 20: 'dat_06_0005' is not of type 'integer', 'null'
+## dat_07_hardware_reference: OK (77 records)
+## dat_08_firmware_compatibility: 1 errors (1 records)
+  - [L1] Record 0: None is not of type 'string'
+## dat_09_sms: 14 errors (14 records)
+  - [L1] Record 0: None is not of type 'string'
+  - [L1] Record 1: None is not of type 'string'
+  - [L1] Record 2: None is not of type 'string'
+  - [L1] Record 3: None is not of type 'string'
+  - [L1] Record 4: None is not of type 'string'
+  - [L1] Record 5: None is not of type 'string'
+  - [L1] Record 6: None is not of type 'string'
+  - [L1] Record 7: None is not of type 'string'
+  - [L1] Record 8: None is not of type 'string'
+  - [L1] Record 9: None is not of type 'string'
+  - [L1] Record 10: None is not of type 'string'
+  - [L1] Record 11: None is not of type 'string'
+  - [L1] Record 12: None is not of type 'string'
+  - [L1] Record 13: None is not of type 'string'
+## dat_10_gprs_data: OK (24 records)
+## dat_11_http_ftp_ssl: OK (38 records)
+## dat_12_audio: 1 errors (13 records)
+  - [L1] Record 12: None is not of type 'string'
+## dat_13_sim_management: 10 errors (10 records)
+  - [L1] Record 0: None is not of type 'string'
+  - [L1] Record 1: None is not of type 'string'
+  - [L1] Record 2: None is not of type 'string'
+  - [L1] Record 3: None is not of type 'string'
+  - [L1] Record 4: None is not of type 'string'
+  - [L1] Record 5: None is not of type 'string'
+  - [L1] Record 6: None is not of type 'string'
+  - [L1] Record 7: None is not of type 'string'
+  - [L1] Record 8: None is not of type 'string'
+  - [L1] Record 9: None is not of type 'string'
+## dat_14_operator_apn: OK (52 records)
+## dat_15_power_management: OK (113 records)
+## dat_16_board_evb: 1 errors (1 records)
+  - [L1] Record 0: None is not of type 'string'
+## dat_17_certificate_key_store: OK (9 records)
+## dat_18_certification: 1 errors (1 records)
+  - [L1] Record 0: None is not of type 'string'
 
-## dat_01 [OK] records=340
-File: `dat_01_at_command.yaml`
+## Summary
 
-## dat_02 [OK] records=18
-File: `dat_02_urc.yaml`
+| Dataset | Records | Errors | Schema |
+|---|---|---|---|
+| dat_01_at_command | 394 | 0 | yes |
+| dat_02_urc | 18 | 0 | yes |
+| dat_03_error_code | 255 | 0 | yes |
+| dat_04_timing_timeout | 99 | 1 | yes |
+| dat_05_state_machine | 31 | 0 | yes |
+| dat_06_init_sequence | 35 | 30 | yes |
+| dat_07_hardware_reference | 77 | 0 | yes |
+| dat_08_firmware_compatibility | 1 | 1 | yes |
+| dat_09_sms | 14 | 14 | yes |
+| dat_10_gprs_data | 24 | 0 | yes |
+| dat_11_http_ftp_ssl | 38 | 0 | yes |
+| dat_12_audio | 13 | 1 | yes |
+| dat_13_sim_management | 10 | 10 | yes |
+| dat_14_operator_apn | 52 | 0 | yes |
+| dat_15_power_management | 113 | 0 | yes |
+| dat_16_board_evb | 1 | 1 | yes |
+| dat_17_certificate_key_store | 9 | 0 | yes |
+| dat_18_certification | 1 | 1 | yes |
 
-## dat_03 [OK] records=255
-File: `dat_03_error_code.yaml`
-
-## dat_04 [OK] records=99
-File: `dat_04_timing_timeout.yaml`
-
-## dat_05 [OK] records=31
-File: `dat_05_state_machine.yaml`
-
-## dat_06 [OK] records=35
-File: `dat_06_init_sequence.yaml`
-
-## dat_07 [OK] records=77
-File: `dat_07_hardware_reference.yaml`
-
-## dat_08 [OK] records=1
-File: `dat_08_firmware_compatibility.yaml`
-
-## dat_09 [OK] records=14
-File: `dat_09_sms.yaml`
-
-## dat_10 [OK] records=24
-File: `dat_10_gprs_data.yaml`
-
-## dat_11 [OK] records=38
-File: `dat_11_http_ftp_ssl.yaml`
-
-## dat_12 [OK] records=13
-File: `dat_12_audio.yaml`
-
-## dat_13 [OK] records=10
-File: `dat_13_sim_management.yaml`
-
-## dat_14 [OK] records=52
-File: `dat_14_operator_apn.yaml`
-
-## dat_15 [OK] records=351
-File: `dat_15_power_management.yaml`
-
-## dat_16 [OK] records=1
-File: `dat_16_board_evb.yaml`
-
-## dat_17 [OK] records=9
-File: `dat_17_certificate_key_store.yaml`
-
-## dat_18 [OK] records=1
-File: `dat_18_certification.yaml`
+**Total records: 1185**
+**Total errors: 59**
